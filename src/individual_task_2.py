@@ -16,8 +16,8 @@
 # с собственными функциями вычисления у в зависимости от входного параметра x.
 # Уравнение эллипса: (x^2/a^2)+(y^2/b^2)=1; гиперболы: (x^2/a^2)-(y^2/b^2)=1.
 
-from abc import ABC, abstractmethod
 import math
+from abc import ABC, abstractmethod
 from typing import Union
 
 
@@ -49,13 +49,8 @@ class Ellipse(Function):
 
     def display_result(self, x: float) -> None:
         """Выводит значение y для эллипса при заданном x."""
-        try:
-            y = self.calculate_y(x)
-            print(
-                f"Для эллипса с параметрами" f"a={self.a}, b={self.b} и x={x}, y = {y}"
-            )
-        except ValueError as e:
-            print(f"Ошибка: {e}")
+        y = self.calculate_y(x)
+        print(f"Для эллипса с параметрами" f"a={self.a}, b={self.b} и x={x}, y = {y}")
 
 
 class Hyperbola(Function):
@@ -70,14 +65,8 @@ class Hyperbola(Function):
 
     def display_result(self, x: float) -> None:
         """Выводит значение y для гиперболы при заданном x."""
-        try:
-            y = self.calculate_y(x)
-            print(
-                f"Для гиперболы с параметрами"
-                f"a={self.a}, b={self.b} и x={x}, y = {y}"
-            )
-        except ValueError as e:
-            print(f"Ошибка: {e}")
+        y = self.calculate_y(x)
+        print(f"Для гиперболы с параметрами" f"a={self.a}, b={self.b} и x={x}, y = {y}")
 
 
 # Функция для демонстрации виртуального вызова

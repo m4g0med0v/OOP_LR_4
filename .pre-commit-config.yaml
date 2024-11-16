@@ -17,4 +17,9 @@ repos:
     rev: v1.11.2
     hooks:
     -   id: mypy
-        args: [--strict, --ignore-missing-imports]
+        args:
+          - --strict
+          - --ignore-missing-imports
+          - --explicit-package-bases
+          - --exclude
+          - '.*(tests|__init__\.py)$'

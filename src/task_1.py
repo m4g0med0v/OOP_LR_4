@@ -41,6 +41,8 @@ class Soldier(Unit):
     def follow_hero(self, hero: Hero) -> None:
         if isinstance(hero, Hero) and hero.team == self.team:
             print(f"Солдат {self.id} следует за героем {hero.id}")
+        else:
+            raise ValueError(f"Солдат {self.id} не может следовать за героем {hero.id}")
 
 
 if __name__ == "__main__":
@@ -65,7 +67,8 @@ if __name__ == "__main__":
     print(f"Солдаты команды 1: {len(soldiers_team_1)}")
     print(f"Солдаты команды 2: {len(soldiers_team_2)}")
 
-    # Определяем команду с большим числом солдат и повышаем уровень героя этой команды
+    # Определяем команду с большим числом солдат и
+    # повышаем уровень героя этой команды
     if len(soldiers_team_1) > len(soldiers_team_2):
         hero_team_1.increase_level()
     else:
