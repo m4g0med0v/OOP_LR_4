@@ -13,17 +13,18 @@
 # вычисления площади.
 
 import math
+from typing import Tuple
 
 
 class Triangle:
-    def __init__(self, a, b, c):
+    def __init__(self, a: float, b: float, c: float) -> None:
         self.a = a
         self.b = b
         self.c = c
         if not self._is_valid_triangle():
             raise ValueError("Стороны не образуют треугольник")
 
-    def set_sides(self, a, b, c):
+    def set_sides(self, a: float, b: float, c: float) -> None:
         """Изменяет длины сторон треугольника."""
         self.a = a
         self.b = b
@@ -31,7 +32,7 @@ class Triangle:
         if not self._is_valid_triangle():
             raise ValueError("Стороны не образуют треугольник")
 
-    def _is_valid_triangle(self):
+    def _is_valid_triangle(self) -> bool:
         """Проверяет, образуют ли заданные стороны треугольник."""
         return (
             (self.a + self.b > self.c)
@@ -39,11 +40,11 @@ class Triangle:
             and (self.b + self.c > self.a)
         )
 
-    def perimeter(self):
+    def perimeter(self) -> float:
         """Вычисляет периметр треугольника."""
         return self.a + self.b + self.c
 
-    def angles(self):
+    def angles(self) -> Tuple[float, float, float]:
         """Вычисляет углы треугольника в градусах."""
         angle_A = math.degrees(
             math.acos((self.b**2 + self.c**2 - self.a**2) / (2 * self.b * self.c))
@@ -56,7 +57,7 @@ class Triangle:
 
 
 class RightAngled(Triangle):
-    def __init__(self, a, b):
+    def __init__(self, a: float, b: float) -> None:
         """
         Инициализирует прямоугольный треугольник с катетами a и b,
         вычисляет гипотенузу.
@@ -65,7 +66,7 @@ class RightAngled(Triangle):
         super().__init__(a, b, c)
         self.area = self.calculate_area()
 
-    def calculate_area(self):
+    def calculate_area(self) -> float:
         """Вычисляет площадь прямоугольного треугольника."""
         return 0.5 * self.a * self.b
 

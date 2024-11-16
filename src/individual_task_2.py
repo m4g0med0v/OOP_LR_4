@@ -18,35 +18,36 @@
 
 from abc import ABC, abstractmethod
 import math
+from typing import Union
 
 
 class Function(ABC):
     @abstractmethod
-    def calculate_y(self, x):
+    def calculate_y(self, x: float) -> float:
         """Вычисляет значение функции y=f(x) в точке x."""
         pass
 
     @abstractmethod
-    def display_result(self, x):
+    def display_result(self, x: float) -> None:
         """Выводит результат на экран."""
         pass
 
 
 class Ellipse(Function):
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
+    def __init__(self, a: float, b: float):
+        self.a: float = a
+        self.b: float = b
 
-    def calculate_y(self, x):
+    def calculate_y(self, x: float) -> float:
         """Вычисляет значение y для эллипса в точке x, если возможно."""
         if abs(x) > self.a:
             raise ValueError(
                 "Значение x выходит за пределы" "допустимых значений для эллипса"
             )
-        y = self.b * math.sqrt(1 - (x**2 / self.a**2))
+        y: float = self.b * math.sqrt(1 - (x**2 / self.a**2))
         return y
 
-    def display_result(self, x):
+    def display_result(self, x: float) -> None:
         """Выводит значение y для эллипса при заданном x."""
         try:
             y = self.calculate_y(x)
@@ -58,16 +59,16 @@ class Ellipse(Function):
 
 
 class Hyperbola(Function):
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
+    def __init__(self, a: float, b: float) -> None:
+        self.a: float = a
+        self.b: float = b
 
-    def calculate_y(self, x):
+    def calculate_y(self, x: float) -> float:
         """Вычисляет значение y для гиперболы в точке x."""
-        y = self.b * math.sqrt((x**2 / self.a**2) - 1)
+        y: float = self.b * math.sqrt((x**2 / self.a**2) - 1)
         return y
 
-    def display_result(self, x):
+    def display_result(self, x: float) -> None:
         """Выводит значение y для гиперболы при заданном x."""
         try:
             y = self.calculate_y(x)
@@ -80,15 +81,15 @@ class Hyperbola(Function):
 
 
 # Функция для демонстрации виртуального вызова
-def show_function_result(function_obj, x):
+def show_function_result(function_obj: Union[Ellipse, Hyperbola], x: float) -> None:
     """Вызывает метод display_result для объекта базового класса Function."""
     function_obj.display_result(x)
 
 
 if __name__ == "__main__":
     # Создаем объекты для эллипса и гиперболы
-    ellipse = Ellipse(a=5, b=3)
-    hyperbola = Hyperbola(a=5, b=3)
+    ellipse: Ellipse = Ellipse(a=5, b=3)
+    hyperbola: Hyperbola = Hyperbola(a=5, b=3)
 
     # Демонстрируем вызов методов для эллипса
     print("Вызов для эллипса:")

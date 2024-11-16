@@ -19,28 +19,28 @@ import random
 
 
 class Unit:
-    _id_counter = 1
+    _id_counter: int = 1
 
-    def __init__(self, team):
-        self.id = Unit._id_counter
+    def __init__(self, team: int) -> None:
+        self.id: int = Unit._id_counter
         Unit._id_counter += 1
-        self.team = team
-
-
-class Soldier(Unit):
-    def follow_hero(self, hero):
-        if isinstance(hero, Hero) and hero.team == self.team:
-            print(f"Солдат {self.id} следует за героем {hero.id}")
+        self.team: int = team
 
 
 class Hero(Unit):
-    def __init__(self, team):
+    def __init__(self, team: int) -> None:
         super().__init__(team)
-        self.level = 1
+        self.level: int = 1
 
-    def increase_level(self):
+    def increase_level(self) -> None:
         self.level += 1
         print(f"Герой {self.id} повысил уровень до {self.level}")
+
+
+class Soldier(Unit):
+    def follow_hero(self, hero: Hero) -> None:
+        if isinstance(hero, Hero) and hero.team == self.team:
+            print(f"Солдат {self.id} следует за героем {hero.id}")
 
 
 if __name__ == "__main__":
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     soldiers_team_2 = []
 
     # Генерируем солдат и распределяем их по командам
-    for _ in range(100):  # количество солдат, например, 100
+    for _ in range(100):
         team = random.choice([1, 2])
         soldier = Soldier(team=team)
         if team == 1:
